@@ -31,7 +31,8 @@ async def tg_reciver(message: types.Message):
         'message': {
             'type': 'text',
             'text': message['text']
-        }
+        },
+        'user': message['from']
     }
     main(task)
 
