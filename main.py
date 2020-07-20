@@ -1,3 +1,4 @@
+from sendMessage import send_message
 
 def save_user(user):
     """
@@ -9,7 +10,8 @@ def save_user(user):
 
 async def main(task, bot):
     if task['event'] == 'start':
-        save_user(task['user'])
-        await bot.send_message(task['chat_id'], 'Privet')
+        # await save_user(task['user'])
+        task['text'] = 'Privet'
+        await send_message(task, bot)
     else:
         print('poshel nahui')
