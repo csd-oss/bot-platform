@@ -7,9 +7,9 @@ def save_user(user):
     return user
 
 
-async def main(task):
+async def main(task, bot):
     if task['event'] == 'start':
         save_user(task['user'])
-        await bot.send_message(task.chat_id, 'Privet')
+        await bot.send_message(task['chat_id'], 'Privet')
     else:
         print('poshel nahui')

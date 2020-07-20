@@ -34,7 +34,7 @@ async def tg_reciver(message: types.Message):
         },
         'user': message['from']
     }
-    await main(task)
+    await main(task, bot)
 
 @dp.message_handler(regexp='^\/start\s\w+')
 async def tg_reciver(message: types.Message):
