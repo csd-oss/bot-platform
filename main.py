@@ -1,4 +1,5 @@
 from sendMessage import send_message
+from time import sleep
 
 def save_user(user):
     """
@@ -18,8 +19,9 @@ async def main(task, bot):
         await send_message(task, bot)
     else:
         if task['message']['text'] == 'хуй':
-            task['text'] = 'Privet, напиши что-то'
+            task['text'] = 'Сук, у тебя хуй'
             await send_message(task, bot)
+            sleep(3)
             await  question(task, bot)
         else: 
             await  question(task, bot)
