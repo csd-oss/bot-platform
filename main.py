@@ -12,12 +12,23 @@ async def question(task, bot):
     task['text'] = 'Привет, как тебя зовут?'
     await send_message(task, bot)
 
+
+async def test(task, bot):
+    task['text'] = 'Test удачи'
+    await send_message(task, bot)
+
 async def main(task, bot):
+    print(task)
     if task['event'] == 'start':
         # await save_user(task['user'])
         task['text'] = 'Privet, напиши что-то'
         await send_message(task, bot)
-    else:
+    # elif task['event'] == 'command':
+    #     func = task['message']['text'][1:]
+    #     print(func)
+    #     task['message']['text'][1:](task, bot)
+    # DOESEN'T work
+    else: 
         if task['message']['text'] == 'хуй':
             task['text'] = 'Сук, у тебя хуй'
             await send_message(task, bot)
