@@ -4,7 +4,6 @@ It echoes any incoming text messages.
 """
 
 import logging
-import re
 
 from aiogram import Bot, Dispatcher, executor, types
 
@@ -48,12 +47,24 @@ async def tg_reciver(message: types.Message):
     }
     main(task)
 
+@dp.message_handler(rexexp='^\/\w+')
+async def tg_reciver(message: types.Message):
+    event = 'comand'
+    task = {
+        'channel': 'telegram',
+        'chat_id': message['from']['id'],
+        'event': event,
+        'message': {
+            'type': 'text',
+            'text': message['text']
+        }
+    }
+    main(task)
+
+
 @dp.message_handler()
 async def tg_reciver(message: types.Message):
-    if bool(re.search('^\/\w+', message['text'])): 
-         event = 'comand'
-    else:
-        event = 'text'
+    event = 'text'
     task = {
         'channel': 'telegram',
         'chat_id': message['from']['id'],
