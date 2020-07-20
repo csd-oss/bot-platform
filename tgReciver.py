@@ -20,6 +20,19 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
+@dp.message_handler(commands=['start'])
+async def tg_reciver(message: types.Message):
+    event = 'start'
+    task = {
+        'channel': 'telegram',
+        'chat_id': message['from']['id'],
+        'event': event,
+        'message': {
+            'type': 'text',
+            'text': message['text']
+        }
+    }
+    main(task)
 
 @dp.message_handler()
 async def tg_reciver(message: types.Message):
@@ -41,6 +54,7 @@ async def tg_reciver(message: types.Message):
         }
     }
     main(task)
+
 
 
 
