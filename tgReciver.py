@@ -19,6 +19,11 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
+def main(task):
+    if task['event'] == 'start':
+        print('Start')
+    else:
+        print('poshel nahui')
 
 @dp.message_handler()
 async def tg_reciver(message: types.Message):
@@ -39,8 +44,9 @@ async def tg_reciver(message: types.Message):
             'text': message['text']
         }
     }
+    main(task)
 
-    return task
+
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
