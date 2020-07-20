@@ -8,6 +8,7 @@ import re
 
 from aiogram import Bot, Dispatcher, executor, types
 
+from main import main 
 from config import tgToken
 
 API_TOKEN = tgToken
@@ -19,11 +20,6 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
-def main(task):
-    if task['event'] == 'start':
-        print('Start')
-    else:
-        print('poshel nahui')
 
 @dp.message_handler()
 async def tg_reciver(message: types.Message):
