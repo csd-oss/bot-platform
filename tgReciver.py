@@ -2,7 +2,7 @@
 This is a echo bot.
 It echoes any incoming text messages.
 """
-
+import re
 import logging
 
 from aiogram import Bot, Dispatcher, executor, types
@@ -33,7 +33,7 @@ async def tg_reciver(message: types.Message):
     }
     main(task)
 
-@dp.message_handler(rexexp='^\/start\s\w+')
+@dp.message_handler(regexp='^\/start\s\w+')
 async def tg_reciver(message: types.Message):
     event = 'context'
     task = {
@@ -47,7 +47,7 @@ async def tg_reciver(message: types.Message):
     }
     main(task)
 
-@dp.message_handler(rexexp='^\/\w+')
+@dp.message_handler(regexp='^\/\w+')
 async def tg_reciver(message: types.Message):
     event = 'comand'
     task = {
