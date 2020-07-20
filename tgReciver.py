@@ -21,8 +21,10 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start'])
 async def tg_reciver(message: types.Message):
+    # print(message)
     event = 'start'
     task = {
+        'message_id':message['message_id'],
         'channel': 'telegram',
         'chat_id': message['from']['id'],
         'event': event,
@@ -37,6 +39,7 @@ async def tg_reciver(message: types.Message):
 async def tg_reciver(message: types.Message):
     event = 'context'
     task = {
+        'message_id':message['message_id'],
         'channel': 'telegram',
         'chat_id': message['from']['id'],
         'event': event,
@@ -51,6 +54,7 @@ async def tg_reciver(message: types.Message):
 async def tg_reciver(message: types.Message):
     event = 'comand'
     task = {
+        'message_id':message['message_id'],
         'channel': 'telegram',
         'chat_id': message['from']['id'],
         'event': event,
@@ -66,6 +70,7 @@ async def tg_reciver(message: types.Message):
 async def tg_reciver(message: types.Message):
     event = 'text'
     task = {
+        'message_id':message['message_id'],
         'channel': 'telegram',
         'chat_id': message['from']['id'],
         'event': event,
