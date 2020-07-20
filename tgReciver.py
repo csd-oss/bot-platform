@@ -10,13 +10,13 @@ from aiogram import Bot, Dispatcher, executor, types
 from main import main 
 from config import tgToken
 
-API_TOKEN = tgToken
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
 # Initialize bot and dispatcher
-bot = Bot(token=API_TOKEN)
+bot = Bot(token=tgToken)
 dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start'])
@@ -34,7 +34,7 @@ async def tg_reciver(message: types.Message):
         },
         'user': message['from']
     }
-    main(task)
+    await main(task)
 
 @dp.message_handler(regexp='^\/start\s\w+')
 async def tg_reciver(message: types.Message):
