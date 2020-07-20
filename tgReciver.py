@@ -49,7 +49,7 @@ async def tg_reciver(message: types.Message):
             'text': message['text']
         }
     }
-    main(task)
+    await main(task, bot)
 
 @dp.message_handler(regexp='^\/\w+')
 async def tg_reciver(message: types.Message):
@@ -64,7 +64,7 @@ async def tg_reciver(message: types.Message):
             'text': message['text']
         }
     }
-    main(task)
+    await main(task, bot)
 
 
 @dp.message_handler()
@@ -80,7 +80,7 @@ async def tg_reciver(message: types.Message):
             'text': message['text']
         }
     }
-    main(task)
+    await main(task, bot)
 
 
 

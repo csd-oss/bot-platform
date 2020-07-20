@@ -7,11 +7,19 @@ def save_user(user):
     """
     return user
 
+async def question(task, bot):
+    task['text'] = 'Привет, как тебя зовут?'
+    await send_message(task, bot)
 
 async def main(task, bot):
     if task['event'] == 'start':
         # await save_user(task['user'])
-        task['text'] = 'Privet'
+        task['text'] = 'Privet, напиши что-то'
         await send_message(task, bot)
     else:
-        print('poshel nahui')
+        if task['message']['text'] == 'хуй':
+            task['text'] = 'Privet, напиши что-то'
+            await send_message(task, bot)
+            await  question(task, bot)
+        else: 
+            await  question(task, bot)
