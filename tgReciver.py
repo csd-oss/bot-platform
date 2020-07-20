@@ -34,13 +34,23 @@ async def tg_reciver(message: types.Message):
     }
     main(task)
 
+@dp.message_handler(rexexp='^\/start\s\w+')
+async def tg_reciver(message: types.Message):
+    event = 'context'
+    task = {
+        'channel': 'telegram',
+        'chat_id': message['from']['id'],
+        'event': event,
+        'message': {
+            'type': 'text',
+            'text': message['text']
+        }
+    }
+    main(task)
+
 @dp.message_handler()
 async def tg_reciver(message: types.Message):
-    if  message['text'] == '/start':
-        event = 'start'
-    elif bool(re.search('^\/start\s\w+', message['text'])):
-        event = 'context'
-    elif bool(re.search('^\/\w+', message['text'])): 
+    if bool(re.search('^\/\w+', message['text'])): 
          event = 'comand'
     else:
         event = 'text'
