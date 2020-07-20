@@ -4,8 +4,10 @@ It echoes any incoming text messages.
 """
 
 import logging
+import re
 
 from aiogram import Bot, Dispatcher, executor, types
+
 from config import tgToken
 
 API_TOKEN = tgToken
@@ -19,12 +21,26 @@ dp = Dispatcher(bot)
 
 
 @dp.message_handler()
-async def send_welcome(message: types.Message):
-    """
-    This handler will be called when user sends anything to bot
-    """
-    await message.reply("Hi!\nI'm EchoBot!\nPowered by aiogram.")
+async def tg_reciver(message: types.Message):
+    if  message['text'] == '/start':
+        event = 'start'
+    elif bool(re.search('^\/start\s\w+', message['text'])):
+        event = 'context'
+    elif bool(re.search('^\/\w+', message['text'])): 
+         event = 'comand'
+    else:
+        event = 'text'
+    task = {
+        'channel': 'telegram',
+        'chat_id': message['from']['id'],
+        'event': event,
+        'message': {
+            'type': 'text',
+            'text': message['text']
+        }
+    }
 
+    return task
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
