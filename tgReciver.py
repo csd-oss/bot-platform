@@ -1,12 +1,9 @@
-import re
 import logging
 
 from aiogram import Bot, Dispatcher, executor, types
 
-from main import main 
+from main import main
 from config import tgToken
-
-
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -15,12 +12,13 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=tgToken)
 dp = Dispatcher(bot)
 
+
 @dp.message_handler(commands=['start'])
-async def tg_reciver(message: types.Message):
+async def start_reciver(message: types.Message):
     # print(message)
     event = 'start'
     task = {
-        'message_id':message['message_id'],
+        'message_id': message['message_id'],
         'channel': 'telegram',
         'chat_id': message['from']['id'],
         'event': event,
@@ -32,11 +30,12 @@ async def tg_reciver(message: types.Message):
     }
     await main(task, bot)
 
+
 @dp.message_handler(regexp='^\/start\s\w+')
-async def tg_reciver(message: types.Message):
+async def start_with_contex_reciver(message: types.Message):
     event = 'context'
     task = {
-        'message_id':message['message_id'],
+        'message_id': message['message_id'],
         'channel': 'telegram',
         'chat_id': message['from']['id'],
         'event': event,
@@ -47,11 +46,12 @@ async def tg_reciver(message: types.Message):
     }
     await main(task, bot)
 
+
 @dp.message_handler(regexp='^\/\w+')
-async def tg_reciver(message: types.Message):
-    event = 'comand'
+async def command_reciver(message: types.Message):
+    event = 'command'
     task = {
-        'message_id':message['message_id'],
+        'message_id': message['message_id'],
         'channel': 'telegram',
         'chat_id': message['from']['id'],
         'event': event,
@@ -67,7 +67,7 @@ async def tg_reciver(message: types.Message):
 async def tg_reciver(message: types.Message):
     event = 'text'
     task = {
-        'message_id':message['message_id'],
+        'message_id': message['message_id'],
         'channel': 'telegram',
         'chat_id': message['from']['id'],
         'event': event,
@@ -77,9 +77,6 @@ async def tg_reciver(message: types.Message):
         }
     }
     await main(task, bot)
-
-
-
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
