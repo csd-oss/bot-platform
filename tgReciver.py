@@ -31,7 +31,7 @@ async def start_reciver(message: types.Message):
     await main(task, bot)
 
 
-@dp.message_handler(regexp='^\/start\s\w+')
+@dp.message_handler(regexp=r'^\/start\s\w+')
 async def start_with_contex_reciver(message: types.Message):
     event = 'context'
     task = {
@@ -47,7 +47,7 @@ async def start_with_contex_reciver(message: types.Message):
     await main(task, bot)
 
 
-@dp.message_handler(regexp='^\/\w+')
+@dp.message_handler(regexp=r'^\/\w+')
 async def command_reciver(message: types.Message):
     event = 'command'
     task = {
