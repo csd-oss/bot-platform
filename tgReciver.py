@@ -26,7 +26,12 @@ async def start_reciver(message: types.Message):
             'type': 'text',
             'text': message['text']
         },
-        'user': message['from']
+        'user': {
+            'channel': 'telegram',
+            'chat_id': message['from']['id'],
+            'first_name': message['from']['first_name'],
+            'username': message['from']['username']
+        }
     }
     await main(task, bot)
 

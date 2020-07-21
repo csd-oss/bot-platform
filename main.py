@@ -1,13 +1,6 @@
 from sendMessage import send_message
 from time import sleep
-
-
-def save_user(user):
-    """
-    TO-DO:
-    * Save users to db
-    """
-    return user
+from userProfile import save_user
 
 
 async def question(task, bot):
@@ -23,7 +16,8 @@ async def test(task, bot):
 async def main(task, bot):
     print(task)
     if task['event'] == 'start':
-        # await save_user(task['user'])
+        user = task['user']
+        await save_user(user)
         task['text'] = 'Privet, напиши что-то'
         await send_message(task, bot)
     else:
