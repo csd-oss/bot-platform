@@ -131,6 +131,7 @@ dmypy.json
 # My files
 .DS_Store
 .vscode
+db.json
 
 # DS store
 config.py
