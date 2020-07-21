@@ -23,11 +23,6 @@ async def main(task, bot):
         # await save_user(task['user'])
         task['text'] = 'Privet, напиши что-то'
         await send_message(task, bot)
-    # elif task['event'] == 'command':
-    #     func = task['message']['text'][1:]
-    #     print(func)
-    #     task['message']['text'][1:](task, bot)
-    # DOESEN'T work
     else: 
         if task['message']['text'] == 'хуй':
             task['text'] = 'Сук, у тебя хуй'
